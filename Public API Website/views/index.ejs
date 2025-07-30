@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bit Nexus</title>
+  </head>
+  <body>
+    <%- include("partials/header.ejs") %>
+    <section>
+        <h1 class="mt-large fit">Bit Nexus. The Crypto Exchange App of the Future.</h1>
+        <h3 class="display-6 mt-large fit lh-lg link-offset-2">
+        Real-time cryptocurrency exchange rates with the click of a button, using
+        the
+        <a
+            class="text-white"
+            href="https://www.blockchain.com/explorer/api/exchange_rates_api"
+            target="_blank"
+            >Blockchain Exchange Rates API</a
+        >.
+        </h3>
+        <h5 id="countdown-display" class="mt-large fit">
+        This page will automatically refresh in 60 seconds to ensure you get the
+        latest BTC exchange rates.
+        </h5>
+        <p class="mt-medium fit text-white text-center">
+        <em
+            >Disclaimer: Exchange rates are approximate and provided for
+            informational purposes only. They should not be used to make financial
+            decisions.</em
+        >
+        </p>
+    </section>
+    <main>
+        <div class="container mt-large">
+        <div class="bg-dark text-white info-box p-4 rounded-corners">
+            <h2 class="mb-small">BTC Exchange Rates</h2>
+            <%# This is how to iterate over a JSON object's properties, and access
+            the value of those properties %>
+            <table class="table mb-small">
+            <thead>
+                <tr>
+                <th scope="col">Currency</th>
+                <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (var i = 0; i < userRates.length; i++) { %> 
+                    <tr>
+                        <th scope="row"><%=userRates[i]%> ★</th>
+                        <td><%=(allRates[userRates[i]].last).toLocaleString('en-US', { style: 'currency', currency: userRates[i] })%></td>
+                    </tr>
+                <% } %>
+            </tbody>
+            </table>
+            <a href="/exchange-rates"><button class="btn btn-warning">View All Exchange Rates</button></a>
+        </div>
+        <div class="bg-dark text-white info-box p-4 rounded-corners">
+            <h2 class="mb-small">Convert to BTC</h2>
+            <form class="mb-medium" action="/btc-conversion" method="POST">
+            <label for="currency">Select Your Currency</label>
+            <select class="form-control mb-medium" name="currency" required>
+                <option value="">Select a Currency</option>
+                <%# This is how to iterate over a JSON object's properties%> 
+                <% for (var key in allRates) { %>
+                    <option value="<%=key%>"><%=key%></option>
+                <% } %>
+            </select>
+            <label for="currency">Enter the Amount</label>
+            <input
+                class="form-control mb-small"
+                name="amount"
+                placeholder="Amount"
+                required
+            />
+            <button type="submit" class="btn btn-warning">Convert</button>
+            </form>
+
+            <% if (typeof conversionBTC !== 'undefined') { %>
+            <p><%=conversionBTC%></p>
+            <% } %>
+        </div>
+        <div class="bg-dark text-white info-box p-4 rounded-corners">
+            <h2 class="mb-small">Currency Conversion</h2>
+            <form class="mb-medium" action="/general-conversion" method="POST">
+            <div class="container">
+                <div>
+                    <label for="currency">Select Currency 1</label>
+                    <select class="form-control mb-medium" name="currency1" required>
+                    <option value="">Currency 1</option>
+                    <% for (var key in allRates) { %>
+                        <option value="<%=key%>"><%=key%></option>
+                    <% } %>
+                    </select>
+                </div>
+                <div>
+                    <label for="amount">Amount</label>
+                    <input
+                    class="form-control mb-medium"
+                    name="amount"
+                    placeholder="Amount"
+                    required
+                    />
+                </div>
+            </div>
+            <div class="container">
+                <div>
+                    <label for="currency2">Select Currency 2</label>
+                    <select class="form-control mb-small" name="currency2" required>
+                    <option value="">Currency 2</option>
+                    <% for (var key in allRates) { %>
+                    <option value="<%=key%>"><%=key%></option>
+                    <% } %>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning">Convert</button>
+            </form>
+            <% if (typeof generalConversion !== 'undefined') { %>
+            <p><%=generalConversion%></p>
+            <% } %>
+        </div>
+        </div>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+
+    <script>
+        let seconds = 60;
+        const countdownDisplay = document.getElementById("countdown-display");
+
+        const countdownInterval = setInterval(() => {
+        seconds--;
+        countdownDisplay.textContent = `This page will automatically refresh in ${seconds} seconds to ensure you get the latest BTC exchange rates.`;
+        if (seconds <= 0) {
+            clearInterval(countdownInterval); // Stop the timer
+            countdownDisplay.textContent = "Refreshing now...";
+            window.location.reload();
+        }
+        }, 1000);
+    </script>
+  </body>
+</html>

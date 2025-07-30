@@ -1,0 +1,77 @@
+body {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("../images/bitcoin-background.jpg");
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+h1 {
+    font-size: 3.8rem !important;
+}
+
+h1, h2, h3, h5 {
+    text-align: center;
+    color: white !important;
+}
+
+.footer, a {
+    color: rgb(52, 58, 64) !important; /* Bootstrap's text-dark colour */
+}
+
+.fit {
+    width: 70%;
+    margin: auto;
+}
+
+p {
+    color: white;
+}
+
+.info-box {
+    width: 33.3%;
+    border: 3px solid white;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+.mt-large {
+    margin-top: 4.5rem;
+}
+
+.mb-small {
+    margin-bottom: 1.5rem;
+}
+
+.mb-medium {
+    margin-bottom: 2rem;
+}
+
+.mt-medium {
+    margin-top: 2rem;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.medium {
+    width: 60% !important;
+}
+
+.rounded-corners{
+    border-radius: 1rem;
+}
+
+table {
+    border: 5px solid grey;
+}
+
+tr, th {
+    text-align: center;
+}

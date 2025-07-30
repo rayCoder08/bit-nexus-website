@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitcoin Exchange Rates</title>
+  </head>
+  <body>
+    <%- include("partials/header.ejs") %>
+
+    <h1 class="mt-large fit">Bitcoin Exchange Rates</h1>
+    <h3 class="display-6 mt-large fit lh-lg link-offset-2">
+      Real-time cryptocurrency exchange rates with the click of a button, using
+      the
+      <a
+        class="text-white"
+        href="https://www.blockchain.com/explorer/api/exchange_rates_api"
+        target="_blank"
+        >Blockchain Exchange Rates API</a
+      >.
+    </h3>
+    <h5 id="countdown-display" class="mt-large fit">
+      This page will automatically refresh in 60 seconds to ensure you get the
+      latest BTC exchange rates.
+    </h5>
+    <p class="mt-3 fit text-white text-center">
+      <em
+        >Disclaimer: Exchange rates are approximate and provided for
+        informational purposes only. They should not be used to make financial
+        decisions.</em
+      >
+    </p>
+
+    <div class="container medium">
+        <table class="table mt-large mb-small">
+            <thead>
+            <tr>
+                <th scope="col">Currency Symbol</th>
+                <th scope="col">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% for (var key in allRates) { %> 
+                    <% if (allRates.hasOwnProperty(key)) { %>
+                        <tr>
+                            <th scope="row"><%=key%></th>
+                            <td><%=(allRates[key].last).toLocaleString('en-US', { style: 'currency', currency: key })%></td>
+                        </tr>
+                     <% } %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <%- include("partials/footer.ejs") %>
+
+    <script>
+      let seconds = 60;
+      const countdownDisplay = document.getElementById("countdown-display");
+
+      const countdownInterval = setInterval(() => {
+        seconds--;
+        countdownDisplay.textContent = `This page will automatically refresh in ${seconds} seconds to ensure you get the latest BTC exchange rates.`;
+        if (seconds <= 0) {
+          clearInterval(countdownInterval); // Stop the timer
+          countdownDisplay.textContent = "Refreshing now...";
+          window.location.reload();
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
