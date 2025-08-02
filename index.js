@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true })); // express middleware - importa
 
 var data = {
     allRates: undefined,
-    userRates: ['CAD', 'USD', 'EUR', 'GBP', 'JPY'],
+    userRates: ['USD', 'CAD', 'EUR', 'GBP', 'JPY'],
     conversionBTC: undefined,
     conversionGeneral: undefined
 }

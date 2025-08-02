@@ -5,6 +5,30 @@ body {
     background-attachment: fixed;
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.top-one {
+    opacity: 0;
+    animation: fadeIn 1.8s forwards;
+}
+
+.top-two {
+    opacity: 0;
+    animation: fadeIn 1.8s 0.5s forwards;
+}
+
+.top-three {
+    opacity: 0;
+    animation: fadeIn 1.8s 1s forwards;
+}
+
 h1 {
     font-size: 3.8rem !important;
 }
@@ -29,7 +53,11 @@ p {
 
 .info-box {
     width: 33.3%;
-    border: 3px solid white;
+    border: 3px solid silver;
+}
+
+.info-box:hover {
+    border-color: white;
 }
 
 label {

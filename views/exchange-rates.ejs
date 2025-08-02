@@ -8,28 +8,34 @@
   <body>
     <%- include("partials/header.ejs") %>
 
-    <h1 class="mt-large fit">Bitcoin Exchange Rates</h1>
-    <h3 class="display-6 mt-large fit lh-lg link-offset-2">
-      Real-time cryptocurrency exchange rates with the click of a button, using
-      the
-      <a
-        class="text-white"
-        href="https://www.blockchain.com/explorer/api/exchange_rates_api"
-        target="_blank"
-        >Blockchain Exchange Rates API</a
-      >.
-    </h3>
-    <h5 id="countdown-display" class="mt-large fit">
-      This page will automatically refresh in 60 seconds to ensure you get the
-      latest BTC exchange rates.
-    </h5>
-    <p class="mt-3 fit text-white text-center">
-      <em
-        >Disclaimer: Exchange rates are approximate and provided for
-        informational purposes only. They should not be used to make financial
-        decisions.</em
-      >
-    </p>
+    <div class="top-one">
+      <h1 class="mt-large fit">Bitcoin Exchange Rates</h1>
+    </div>
+    <div class="top-two">
+      <h3 class="display-6 mt-large fit lh-lg link-offset-2">
+        Cryptocurrency exchange rates with the click of a button, using
+        the
+        <a
+          class="text-white"
+          href="https://www.blockchain.com/explorer/api/exchange_rates_api"
+          target="_blank"
+          >Blockchain Exchange Rates API</a
+        >.
+      </h3>
+    </div>
+    <div class="top-three">
+      <h5 id="countdown-display" class="mt-large fit">
+        This page will automatically refresh in 60 seconds to ensure you get the
+        latest BTC exchange rates.
+      </h5>
+      <p class="mt-3 fit text-white text-center">
+        <em
+          >Disclaimer: Exchange rates are approximate and provided for
+          informational purposes only. They should not be used to make financial
+          decisions.</em
+        >
+      </p>
+    </div>
 
     <div class="container medium">
         <table class="table mt-large mb-small">
